@@ -6,7 +6,7 @@ from collections import Counter
 app = Flask(__name__)
 
 # Load career JSON
-with open("backend/career.json") as f:
+with open("backend/data/careers.json", encoding="utf-8") as f:
     career_data = json.load(f)
 
 def calculate_riasec_score(answers):
@@ -37,19 +37,26 @@ def rule_based_career(scores):
 # ----------------------------
 @app.route("/", methods=["GET", "POST"])
 def index():
+    print("Req recieved")
     education_level = request.form.get("education_level", "10th Class")
     quiz = load_quiz(education_level)
+    print("Quiz Loaded:",quiz)
 
     if request.method == "POST":
+        print("Processing POST req")
         answers = {}
         for q in quiz:
             selected = request.form.get(f"q{q['id']}")
-            # Map back selected text to codes
             selected_opt = next(opt for opt in q["options"] if opt["text"] == selected)
             answers[q['id']] = selected_opt
 
         scores = calculate_riasec_score(answers)
+        print("Scores:",scores)
         career_roadmap = rule_based_career(scores)
+        print("Career Roadmap:",career_roadmap)
         return render_template("roadmap.html", career=career_roadmap)
 
     return render_template("index.html", quiz=quiz)
+
+if __name__ == "__main__":
+    app.run(debug=True)
