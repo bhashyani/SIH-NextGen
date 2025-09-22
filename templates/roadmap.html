@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <title>{{ career.title }} Roadmap</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #f5f7fa;
-            color: #333;
+            background: linear-gradient(135deg, #0a0a0f, #001f3f);
+            color: #fff;
             margin: 0;
             padding: 0;
         }
@@ -20,53 +19,96 @@
         }
         h1 {
             text-align: center;
-            color: #6A00FF;
+            color: #00d4ff;
             margin-bottom: 40px;
+            font-size: 2.8rem;
+            background: linear-gradient(90deg, #6a00ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
         }
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #6a00ff, 0 0 10px #6a00ff; }
+            100% { text-shadow: 0 0 20px #00d4ff, 0 0 30px #00d4ff; }
+        }
+
         .timeline-container {
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
         .stage-card {
-            background: #fff;
-            padding: 20px;
-            border-left: 6px solid #6A00FF;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-radius: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
+            background: #111;
+            padding: 25px 30px;
+            border-left: 6px solid #6a00ff;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.6);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         .stage-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,212,255,0.5);
         }
         .stage-title {
-            font-size: 1.4em;
+            font-size: 1.5rem;
             margin-bottom: 10px;
             display: flex;
             align-items: center;
             gap: 10px;
-        }
-        .stage-title span.icon {
-            font-size: 1.6em;
+            color: #00d4ff;
         }
         .stage-description {
+            font-size: 1.1rem;
             margin-bottom: 10px;
+            color: #ccc;
         }
-        .stage-skills, .stage-resources {
-            font-size: 0.9em;
-            color: #555;
+        .stage-skills {
+            font-size: 0.95rem;
+            color: #aaa;
         }
-        .stage-resources a {
-            color: #6A00FF;
+        .stage-icon {
+            font-size: 2rem;
+        }
+
+        .ai-btn {
+            display: inline-block;
+            margin: 30px auto;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6a00ff, #00d4ff);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
             text-decoration: none;
-            margin-right: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
         }
-        .stage-resources a:hover {
-            text-decoration: underline;
+        .ai-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,212,255,0.5);
         }
-        #timeline {
-            margin-top: 50px;
+
+        .back-btn {
+            display: inline-block;
+            margin: 20px auto;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6a00ff, #00d4ff);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        .back-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,212,255,0.5);
         }
     </style>
 </head>
@@ -78,51 +120,25 @@
             {% for stage in career.roadmap %}
             <div class="stage-card">
                 <div class="stage-title">
-                    <span class="icon">{{ stage.icon }}</span>
+                    <span class="stage-icon">{{ stage.icon }}</span>
                     <strong>{{ stage.stage }}</strong>
                 </div>
                 <div class="stage-description">{{ stage.description }}</div>
+                {% if stage.skills %}
                 <div class="stage-skills"><b>Skills:</b> {{ stage.skills | join(", ") }}</div>
-                <div class="stage-resources"><b>Resources:</b> 
-                    {% for link in stage.resources %}
-                        <a href="{{ link }}" target="_blank">Link</a>
-                    {% endfor %}
-                </div>
+                {% endif %}
             </div>
             {% endfor %}
         </div>
 
-        <!-- Optional Plotly Timeline -->
-        <div id="timeline"></div>
+        <div style="text-align:center;">
+            <!-- AI Guidance Button -->
+            <a href="/ai-mentor" class="ai-btn">🤖 AI Guidance</a>
+        </div>
+
+        <div style="text-align:center;">
+            <a href="/" class="back-btn">Back to Home</a>
+        </div>
     </div>
-
-    <script>
-        const roadmap = {{ career.roadmap | tojson }};
-        const stages = roadmap.map(r => r.stage);
-        const descriptions = roadmap.map(r => r.description);
-        const icons = roadmap.map(r => r.icon);
-        const skills = roadmap.map(r => r.skills.join(", "));
-        const resources = roadmap.map(r => r.resources.map(link => `<a href='${link}' target='_blank'>Link</a>`).join(" | "));
-
-        const data = [{
-            x: Array(stages.length).fill(1),
-            y: stages,
-            text: descriptions.map((d,i) => `${icons[i]} <b>${stages[i]}</b><br>${d}<br>Skills: ${skills[i]}<br>${resources[i]}`),
-            type: 'bar',
-            orientation: 'h',
-            marker: {color: '#6A00FF'},
-            hoverinfo: 'text'
-        }];
-
-        const layout = {
-            title: '',
-            height: 50 + stages.length * 60,
-            yaxis: {autorange: "reversed"},
-            xaxis: {visible: false},
-            margin: {l: 150, r: 50, t: 20, b: 20}
-        };
-
-        Plotly.newPlot('timeline', data, layout, {responsive: true});
-    </script>
 </body>
 </html>

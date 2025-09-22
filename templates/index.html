@@ -3,12 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <title>Quiz - {{ education_level }}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: auto; }
-        .question { margin-bottom: 20px; }
-        .options label { display: block; margin: 5px 0; }
-        .error { color: red; font-weight: bold; margin-bottom: 20px; }
-        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0a0a0f, #001f3f);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            background: linear-gradient(90deg, #6a00ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-align: center;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px #6a00ff, 0 0 10px #6a00ff; }
+            100% { text-shadow: 0 0 20px #00d4ff, 0 0 30px #00d4ff; }
+        }
+
+        .error {
+            color: #ff4c4c;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .question {
+            background: #111;
+            padding: 20px 25px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .question:hover {
+            transform: scale(1.02);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.7);
+        }
+
+        .question p {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+
+        .options label {
+            display: block;
+            margin: 8px 0;
+            padding: 10px 15px;
+            border-radius: 10px;
+            background: #222;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .options label:hover {
+            background: linear-gradient(135deg, #6a00ff, #00d4ff);
+            color: #fff;
+            transform: scale(1.05);
+        }
+
+        .options input[type="radio"] {
+            margin-right: 10px;
+            accent-color: #6a00ff;
+            cursor: pointer;
+        }
+
+        button[type="submit"] {
+            padding: 15px 35px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #fff;
+            background: linear-gradient(135deg, #6a00ff, #00d4ff);
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            align-self: center;
+        }
+
+        button[type="submit"]:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 20px rgba(0,212,255,0.5);
+        }
+
+        button[type="submit"]::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.2);
+            transition: all 0.5s;
+        }
+
+        button[type="submit"]:hover::after {
+            left: 0;
+        }
+
     </style>
 </head>
 <body>
@@ -19,7 +141,6 @@
     {% endif %}
 
     <form method="POST">
-        <!-- Hidden field to preserve education_level -->
         <input type="hidden" name="education_level" value="{{ education_level }}">
 
         {% for q in quiz %}

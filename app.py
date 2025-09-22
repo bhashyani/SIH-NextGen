@@ -9,13 +9,11 @@ app = Flask(__name__)
 with open("backend/data/careers.json", encoding="utf-8") as f:
     career_data = json.load(f)
 
-
 def calculate_riasec_score(answers):
     all_codes = []
     for opt in answers.values():
         all_codes.extend(opt.get("code", []))
     return dict(Counter(all_codes))
-
 
 def rule_based_career(scores):
     # Determine top RIASEC code
@@ -34,17 +32,27 @@ def rule_based_career(scores):
 
     return career_data[career_key]  # Return full JSON object
 
-
 # ----------------------------
 # Routes
 # ----------------------------
-@app.route("/", methods=["GET", "POST"])
+
+# Landing page → Intro page
+@app.route("/", methods=["GET"])
+def home():
+    return render_template("intro.html")
+
+
+# Class selection and quiz route
+@app.route("/quiz", methods=["GET", "POST"])
 def index():
     levels = list(QUIZ_MAP.keys())
 
     if request.method == "POST":
-        # Always get the education level from the form
         education_level = request.form.get("education_level")
+
+        if not education_level:
+            # No level selected yet → show class selection page
+            return render_template("select_level.html", levels=levels)
 
         # Check if this POST contains quiz answers
         answered_keys = [
@@ -68,7 +76,6 @@ def index():
                 if selected_opt:
                     answers[q["id"]] = selected_opt
 
-            # If some answers are missing, reload quiz with error
             if len(answers) < len(quiz):
                 return render_template(
                     "index.html",
@@ -77,13 +84,12 @@ def index():
                     error="⚠️ Please answer all questions before submitting."
                 )
 
-            # All answers valid → calculate scores and show roadmap
             scores = calculate_riasec_score(answers)
             career_roadmap = rule_based_career(scores)
             return render_template("roadmap.html", career=career_roadmap)
 
         else:
-            # POST with only education_level → show quiz once
+            # POST with only education_level → show quiz
             quiz = load_quiz(education_level)
             return render_template(
                 "index.html",
@@ -94,6 +100,17 @@ def index():
     # GET request → show class selection
     return render_template("select_level.html", levels=levels)
 
+
+# AI Mentor page with simple interactive form
+@app.route("/ai-mentor", methods=["GET", "POST"])
+def ai_mentor():
+    response = None
+    if request.method == "POST":
+        question = request.form.get("question")
+        if question:
+            # Placeholder AI response
+            response = f"🤖 AI Mentor says: I received your question: '{question}'"
+    return render_template("ai_mentor.html", response=response)
 
 if __name__ == "__main__":
     app.run(debug=True)
