@@ -1,5 +1,5 @@
 import streamlit as st
-from backend.career_engine import load_quiz, recommend_career
+from backend.careerengine import load_quiz, recommend_career
 
 st.set_page_config(page_title="Career & Education Advisor", page_icon="🎓")
 
