@@ -4,109 +4,69 @@
     <meta charset="UTF-8">
     <title>NextGen - AI Career Mentor</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
     <style>
-        /* Reset */
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Roboto', sans-serif;
             background: linear-gradient(135deg, #0a0a0f, #001f3f);
             color: #f0f0f0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            overflow: hidden;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        /* Floating background circles */
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(106,0,255,0.2);
-            animation: float 10s ease-in-out infinite;
-            z-index: 0;
-        }
-
-        .circle1 { width: 150px; height: 150px; top: 10%; left: 20%; animation-delay: 0s; }
+        /* Floating circles */
+        .circle { position: absolute; border-radius: 50%; background: rgba(106,0,255,0.2); animation: float 10s ease-in-out infinite; z-index: 0; }
+        .circle1 { width: 150px; height: 150px; top: 10%; left: 20%; }
         .circle2 { width: 200px; height: 200px; top: 50%; left: 70%; animation-delay: 3s; }
         .circle3 { width: 100px; height: 100px; top: 80%; left: 30%; animation-delay: 5s; }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-30px) rotate(180deg); }
-        }
+        @keyframes float { 0%,100% { transform: translateY(0) rotate(0deg);} 50% { transform: translateY(-30px) rotate(180deg);} }
 
-        h1 {
-            font-size: 4rem;
-            z-index: 1;
-            background: linear-gradient(90deg, #6a00ff, #00d4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
-            text-align: center;
-            animation: glow 2s ease-in-out infinite alternate;
-        }
+        /* Header */
+        header { position: fixed; top: 0; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 15px 30px; z-index: 10; }
+        header h1 { font-size: 2rem; background: linear-gradient(90deg,#6a00ff,#00d4ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; cursor: pointer; animation: glow 2s ease-in-out infinite alternate; }
+        @keyframes glow { 0%{text-shadow:0 0 5px #6a00ff;} 100%{text-shadow:0 0 20px #00d4ff;} }
 
-        @keyframes glow {
-            0% { text-shadow: 0 0 5px #6a00ff, 0 0 10px #6a00ff; }
-            100% { text-shadow: 0 0 20px #00d4ff, 0 0 30px #00d4ff; }
-        }
+        .header-buttons { display: flex; gap: 15px; align-items: center; }
+        .header-btn { padding: 8px 18px; font-size: 14px; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.3s; background: linear-gradient(135deg,#6a00ff,#00d4ff); color: #fff; }
+        .header-btn:hover { transform: scale(1.05); }
 
-        p {
-            font-size: 1.2rem;
-            color: #cccccc;
-            margin-bottom: 50px;
-            z-index: 1;
-            text-align: center;
-        }
+        /* Menu Overlay */
+        .menu-overlay { position: fixed; top:0; right:0; width:70%; max-width:300px; height:100%; background:#0a0a0f; transform:translateX(100%); transition:transform 0.3s ease-in-out; padding:40px 20px; z-index:20; }
+        .menu-overlay.open { transform:translateX(0); }
+        .menu-overlay h2 { font-size:1.5rem; margin-bottom:30px; color:#00d4ff; }
+        .menu-overlay a { display:block; margin:15px 0; font-size:18px; color:#f0f0f0; text-decoration:none; transition:0.3s; }
+        .menu-overlay a:hover { color:#6a00ff; margin-left:8px; }
+        .close-btn { font-size:24px; color:#fff; cursor:pointer; margin-bottom:20px; }
 
-        .btn {
-            padding: 15px 35px;
-            margin: 15px;
-            font-size: 18px;
-            font-weight: bold;
-            color: #fff;
-            background: linear-gradient(135deg, #6a00ff, #00d4ff);
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 1;
-            text-decoration: none;
-            position: relative;
-            overflow: hidden;
-        }
+        /* Hero Section */
+        main { min-height:100vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; z-index:1; padding-top:80px; }
+        main h2 { font-size:3rem; margin-bottom:20px; }
+        main p { font-size:1.2rem; color:#cccccc; margin-bottom:40px; max-width:600px; }
 
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-        }
+        .btn { padding:15px 35px; margin:15px; font-size:18px; font-weight:bold; color:#fff; background:linear-gradient(135deg,#6a00ff,#00d4ff); border:none; border-radius:12px; cursor:pointer; transition:all 0.3s ease; text-decoration:none; }
+        .btn:hover { transform:translateY(-5px) scale(1.05); box-shadow:0 10px 20px rgba(0,0,0,0.4); }
 
-        .btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255,255,255,0.2);
-            transition: all 0.5s;
-        }
+        /* Extra Sections */
+        section { padding:60px 20px; max-width:1200px; margin:auto; text-align:center; }
+        section h2 { font-size:2rem; margin-bottom:30px; color:#00d4ff; }
+        .grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:20px; }
+        .card { background:#1e293b; padding:20px; border-radius:10px; transition:0.3s; }
+        .card:hover { transform:translateY(-5px); background:#334155; }
+        .card i { font-size:2em; color:#22d3ee; margin-bottom:10px; }
+        .card h3 { margin-bottom:10px; color:#fff; }
+        .card p { color:#cbd5e1; font-size:0.95em; }
 
-        .btn:hover::after {
-            left: 0;
-        }
+        /* AI Guidance */
+        .ai-guidance { text-align:center; margin:50px 0; }
+        .ai-guidance button { background:linear-gradient(90deg,#8b5cf6,#22d3ee); color:white; border:none; padding:15px 40px; font-size:1.1em; border-radius:30px; cursor:pointer; transition:0.3s; }
+        .ai-guidance button:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(139,92,246,0.5); }
 
-        /* Container for buttons */
-        .buttons {
-            display: flex;
-            flex-direction: row;
-            gap: 20px;
-            z-index: 1;
-        }
-
+        /* Roadmap styling */
+        .roadmap-box { background:#1e293b; padding:20px; border-radius:10px; text-align:left; margin-top:20px; }
+        .roadmap-box ol { margin-left:20px; color:#cbd5e1; }
     </style>
 </head>
 <body>
@@ -115,19 +75,115 @@
     <div class="circle circle2"></div>
     <div class="circle circle3"></div>
 
-    <h1>NextGen</h1>
-    <p>Discover your ideal career path with AI-powered guidance.</p>
+    <!-- Header -->
+    <header>
+        <h1 onclick="location.reload()">NextGen</h1>
+        <div class="header-buttons">
+            <button class="header-btn" onclick="window.location.href='/signup'">Sign Up</button>
+            <button class="header-btn" id="menu-toggle">Menu</button>
+        </div>
+    </header>
 
-    <div class="buttons">
-        <!-- Start Quiz -->
-        <form action="/quiz" method="GET">
-            <button class="btn" type="submit">Start Quiz</button>
-        </form>
+    <!-- Menu Overlay -->
+    <div class="menu-overlay" id="menu">
+        <div class="close-btn" id="close-menu">&times; Close</div>
+        <h2>Menu</h2>
+        <a href="/quiz">🎯 Quiz</a>
+        <a href="/ai-mentor">🤖 AI Mentor</a>
+        <a href="#roadmap">📊 Roadmap</a>
+    </div>
 
-        <!-- AI Mentor -->
+    <!-- Hero -->
+    <main>
+        <h2>Discover Your Path with AI</h2>
+        <p>Get personalized career advice, college suggestions, and skill roadmaps — all powered by AI.</p>
+        <div>
+            <form action="/quiz" method="GET" style="display:inline;">
+                <button class="btn" type="submit">Start Quiz</button>
+            </form>
+            <form action="/ai-mentor" method="GET" style="display:inline;">
+                <button class="btn" type="submit">AI Mentor</button>
+            </form>
+        </div>
+    </main>
+
+    <!-- Extra Sections -->
+    <section>
+        <h2>✨ What We Do</h2>
+        <div class="grid">
+            <div class="card"><i class="ri-lightbulb-line"></i><h3>Analyze Your Interests</h3><p>AI-powered assessments to uncover passions and strengths.</p></div>
+            <div class="card"><i class="ri-map-pin-2-line"></i><h3>Create a Roadmap</h3><p>Step-by-step guidance from school to career.</p></div>
+            <div class="card"><i class="ri-graduation-cap-line"></i><h3>Connect to Opportunities</h3><p>Find colleges, courses, and certifications tailored to you.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🚀 How It Is Useful</h2>
+        <div class="grid">
+            <div class="card"><i class="ri-compass-3-line"></i><h3>Career Guidance</h3><p>AI-driven suggestions based on your skills & interests.</p></div>
+            <div class="card"><i class="ri-book-2-line"></i><h3>Education Pathways</h3><p>Find the right courses, colleges, and certifications.</p></div>
+            <div class="card"><i class="ri-bar-chart-line"></i><h3>Skill Gap Analysis</h3><p>Know the exact skills you need for your dream job.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>⚡ How It Works</h2>
+        <div class="grid">
+            <div class="card"><i class="ri-question-answer-line"></i><h3>Take the Quiz</h3><p>Answer a few simple questions to get started.</p></div>
+            <div class="card"><i class="ri-brain-line"></i><h3>AI Analysis</h3><p>Our AI processes your answers and skills.</p></div>
+            <div class="card"><i class="ri-road-map-line"></i><h3>Get Your Roadmap</h3><p>Receive a personalized career and skill plan.</p></div>
+        </div>
+    </section>
+
+    <section>
+        <h2>🌟 What Makes NextGen Different?</h2>
+        <div class="grid">
+            <div class="card"><i class="ri-rocket-2-line"></i><h3>AI-Powered</h3><p>We use cutting-edge AI to create truly personalized guidance.</p></div>
+            <div class="card"><i class="ri-community-line"></i><h3>For Students</h3><p>Built with students in mind, focusing on clarity and accessibility.</p></div>
+            <div class="card"><i class="ri-global-line"></i><h3>Future-Ready</h3><p>Stay aligned with the latest industry demands and trends.</p></div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap">
+        <h2>📍 How the Roadmap is Generated</h2>
+        <p>
+            The roadmap is generated from your quiz answers, which are mapped to
+            <b>RIASEC codes</b> (Realistic, Investigative, Artistic, Social, Enterprising, Conventional).
+            Based on your strongest codes, careers are suggested with a tailored roadmap including:
+        </p>
+        <ul style="margin:20px 0; text-align:left; max-width:800px; margin:auto; color:#cbd5e1;">
+            <li>✅ Core skills you should build</li>
+            <li>✅ Recommended courses & certifications</li>
+            <li>✅ Suggested projects & internships</li>
+            <li>✅ Step-by-step milestones towards your career</li>
+        </ul>
+
+        <div class="roadmap-box">
+            <h3 class="text-xl font-bold text-blue-400">📝 Sample Roadmap: AI Engineer</h3>
+            <ol>
+                <li><b>Foundation:</b> Learn Python & Math (Linear Algebra, Probability)</li>
+                <li><b>Intermediate:</b> Machine Learning (Scikit-learn, basics of ML)</li>
+                <li><b>Advanced:</b> Deep Learning (TensorFlow, PyTorch)</li>
+                <li><b>Hands-on:</b> Projects, Kaggle competitions, AI apps</li>
+                <li><b>Career Prep:</b> Portfolio, networking, internships</li>
+            </ol>
+        </div>
+    </section>
+
+    <!-- AI Guidance -->
+    <div class="ai-guidance">
         <form action="/ai-mentor" method="GET">
-            <button class="btn" type="submit">AI Mentor</button>
+            <button type="submit">🤖 Get AI Guidance</button>
         </form>
     </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const closeMenu = document.getElementById('close-menu');
+        const menu = document.getElementById('menu');
+        menuToggle.addEventListener('click', () => menu.classList.add('open'));
+        closeMenu.addEventListener('click', () => menu.classList.remove('open'));
+    </script>
 </body>
 </html>

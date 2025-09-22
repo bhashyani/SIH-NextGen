@@ -1,5 +1,5 @@
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from backend.quiz_loader import load_quiz, QUIZ_MAP
 from collections import Counter
 
@@ -31,6 +31,7 @@ def rule_based_career(scores):
         career_key = "Teacher"
 
     return career_data[career_key]  # Return full JSON object
+
 
 # ----------------------------
 # Routes
@@ -112,5 +113,34 @@ def ai_mentor():
             response = f"🤖 AI Mentor says: I received your question: '{question}'"
     return render_template("ai_mentor.html", response=response)
 
+
+# ----------------------------
+# Sign In / Sign Up Routes
+# ----------------------------
+
+@app.route("/signin", methods=["GET", "POST"])
+def signin():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        # TODO: Add authentication logic (DB or mock check)
+        return redirect(url_for("home"))  # Redirect to intro after login
+    return render_template("signin.html")
+
+
+@app.route("/signup", methods=["GET", "POST"])
+def signup():
+    if request.method == "POST":
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+        # TODO: Save user details (DB or mock)
+        return redirect(url_for("signin"))
+    return render_template("signup.html")
+
+
+# ----------------------------
+# Main Entry
+# ----------------------------
 if __name__ == "__main__":
     app.run(debug=True)
