@@ -1,0 +1,247 @@
+{
+  "AI Engineer": {
+    "title": "AI Engineer",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Learn Python, Statistics, Linear Algebra",
+        "skills": [ "Python", "Statistics", "Linear Algebra" ],
+        "resources": [ "https://www.coursera.org/learn/python", "https://www.khanacademy.org/math/statistics" ],
+        "icon": "🐍"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Learn ML libraries like TensorFlow, PyTorch, Scikit-learn",
+        "skills": [ "TensorFlow", "PyTorch", "Scikit-learn" ],
+        "resources": [ "https://www.tensorflow.org/tutorials", "https://pytorch.org/tutorials/" ],
+        "icon": "🤖"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Work on projects like chatbots and image recognition",
+        "skills": [ "Project Development", "Data Handling", "Model Deployment" ],
+        "resources": [ "https://github.com/topics/machine-learning-project" ],
+        "icon": "💻"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Apply for internships in AI-focused companies",
+        "skills": [ "Resume Building", "Interview Prep", "Networking" ],
+        "resources": [ "https://internshala.com", "https://www.linkedin.com/jobs/" ],
+        "icon": "📄"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Consider M.Tech/MS in AI or relevant certifications",
+        "skills": [ "Advanced AI", "Research Skills" ],
+        "resources": [ "https://www.nptel.ac.in/", "https://www.coursera.org/specializations/ai" ],
+        "icon": "🎓"
+      }
+    ]
+  },
+
+  "Graphic Designer": {
+    "title": "Graphic Designer",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Learn Photoshop, Illustrator, Figma",
+        "skills": [ "Photoshop", "Illustrator", "Figma" ],
+        "resources": [ "https://www.adobe.com/", "https://www.figma.com/learn/" ],
+        "icon": "🎨"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Build a portfolio with creative projects",
+        "skills": [ "Portfolio Design", "Branding" ],
+        "resources": [ "https://behance.net" ],
+        "icon": "🖼️"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Freelance or internships in design agencies",
+        "skills": [ "Client Communication", "Project Management" ],
+        "resources": [ "https://upwork.com", "https://freelancer.com" ],
+        "icon": "💼"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Learn UI/UX principles",
+        "skills": [ "UI Design", "UX Research", "Prototyping" ],
+        "resources": [ "https://www.interaction-design.org/" ],
+        "icon": "📐"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Transition into senior designer or product design roles",
+        "skills": [ "Leadership", "Product Design" ],
+        "resources": [ "https://medium.com/ux-design" ],
+        "icon": "🏆"
+      }
+    ]
+  },
+
+  "Teacher": {
+    "title": "Teacher",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Specialize in your favorite subject",
+        "skills": [ "Subject Knowledge", "Lesson Planning" ],
+        "resources": [ "https://www.khanacademy.org/", "https://www.coursera.org/" ],
+        "icon": "📚"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Get a teaching certification / B.Ed",
+        "skills": [ "Teaching Methods", "Classroom Management" ],
+        "resources": [ "https://www.ncte-india.org/", "https://www.udemy.com/" ],
+        "icon": "🎓"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Start teaching (school/online)",
+        "skills": [ "Communication", "Student Engagement" ],
+        "resources": [ "https://teachmint.com/", "https://www.zoom.us/" ],
+        "icon": "🏫"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Upskill with EdTech tools",
+        "skills": [ "Digital Tools", "Interactive Learning" ],
+        "resources": [ "https://www.classdojo.com/", "https://kahoot.com/" ],
+        "icon": "💻"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Become senior faculty or academic researcher",
+        "skills": [ "Leadership", "Research Skills" ],
+        "resources": [ "https://scholar.google.com/", "https://www.researchgate.net/" ],
+        "icon": "🏆"
+      }
+    ]
+  },
+
+  "Entrepreneur": {
+    "title": "Entrepreneur",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Learn basics of finance, marketing, leadership",
+        "skills": [ "Finance", "Marketing", "Leadership" ],
+        "resources": [ "https://www.coursera.org/", "https://www.edx.org/" ],
+        "icon": "💡"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Build a small project/startup idea",
+        "skills": [ "Idea Validation", "MVP Development" ],
+        "resources": [ "https://startups.com/", "https://www.ycombinator.com/" ],
+        "icon": "🚀"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Seek mentorship & incubators",
+        "skills": [ "Networking", "Mentorship" ],
+        "resources": [ "https://www.mentorcruise.com/", "https://www.techstars.com/" ],
+        "icon": "🤝"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Scale your business",
+        "skills": [ "Operations", "Team Management", "Marketing Strategy" ],
+        "resources": [ "https://www.hbr.org/", "https://www.shopify.com/blog" ],
+        "icon": "📈"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Mentor others and expand network",
+        "skills": [ "Coaching", "Networking" ],
+        "resources": [ "https://www.linkedin.com/learning/" ],
+        "icon": "🏆"
+      }
+    ]
+  },
+
+  "Data Analyst": {
+    "title": "Data Analyst",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Learn Excel, SQL, and basic statistics",
+        "skills": [ "Excel", "SQL", "Statistics" ],
+        "resources": [ "https://www.coursera.org/learn/excel", "https://www.khanacademy.org/math/statistics" ],
+        "icon": "📊"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Learn Python/R and data visualization libraries",
+        "skills": [ "Python", "R", "Matplotlib", "Seaborn" ],
+        "resources": [ "https://www.datacamp.com/", "https://www.kaggle.com/learn/overview" ],
+        "icon": "🐍"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Work on data cleaning, analysis, and reporting projects",
+        "skills": [ "Data Cleaning", "EDA", "Reporting" ],
+        "resources": [ "https://github.com/topics/data-analysis" ],
+        "icon": "💻"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Internships or freelance projects",
+        "skills": [ "Problem Solving", "Presentation Skills" ],
+        "resources": [ "https://internshala.com", "https://upwork.com" ],
+        "icon": "💼"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Move into senior analyst or data science roles",
+        "skills": [ "Machine Learning", "Business Analytics" ],
+        "resources": [ "https://www.coursera.org/specializations/data-science" ],
+        "icon": "🏆"
+      }
+    ]
+  },
+
+  "Digital Marketer": {
+    "title": "Digital Marketer",
+    "roadmap": [
+      {
+        "stage": "Stage 1",
+        "description": "Learn SEO, social media marketing, and Google Ads",
+        "skills": [ "SEO", "Social Media", "Google Ads" ],
+        "resources": [ "https://www.coursera.org/learn/digital-marketing", "https://moz.com/learn/seo" ],
+        "icon": "📢"
+      },
+      {
+        "stage": "Stage 2",
+        "description": "Build campaigns and a marketing portfolio",
+        "skills": [ "Campaign Management", "Analytics" ],
+        "resources": [ "https://www.hubspot.com/resources" ],
+        "icon": "💼"
+      },
+      {
+        "stage": "Stage 3",
+        "description": "Freelance, internships, or work in agencies",
+        "skills": [ "Client Handling", "Reporting" ],
+        "resources": [ "https://upwork.com", "https://freelancer.com" ],
+        "icon": "🤝"
+      },
+      {
+        "stage": "Stage 4",
+        "description": "Learn content marketing and branding",
+        "skills": [ "Content Creation", "Brand Strategy" ],
+        "resources": [ "https://www.copyblogger.com/" ],
+        "icon": "✍️"
+      },
+      {
+        "stage": "Stage 5",
+        "description": "Transition to senior marketer or marketing manager roles",
+        "skills": [ "Leadership", "Strategy" ],
+        "resources": [ "https://www.linkedin.com/learning/" ],
+        "icon": "🏆"
+      }
+    ]
+  }
+}

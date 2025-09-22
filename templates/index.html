@@ -1,0 +1,35 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Career Advisor Quiz</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🎓 Personalized Career Advisor</h1>
+        <form id="quizForm" method="POST">
+            <input type="hidden" name="education_level" value="10th Class">
+
+            {% for q in quiz %}
+            <div class="quiz-card" data-step="{{ loop.index0 }}" {% if loop.index0 !=0 %}style="display:none" {% endif %}>
+                <p><b>Q{{ q.id }}: {{ q.question }}</b></p>
+                {% for opt in q.options %}
+                <div class="option">
+                    <input type="radio" id="q{{ q.id }}_{{ loop.index }}" name="q{{ q.id }}" value="{{ opt.text }}" required>
+                    <label for="q{{ q.id }}_{{ loop.index }}">{{ opt.text }}</label>
+                </div>
+                {% endfor %}
+            </div>
+            {% endfor %}
+
+            <div class="quiz-navigation">
+                <button type="button" id="prevBtn" onclick="nextPrev(-1)">⬅️ Previous</button>
+                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next ➡️</button>
+                <button type="submit" id="submitBtn" style="display:none">Submit ✅</button>
+            </div>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
