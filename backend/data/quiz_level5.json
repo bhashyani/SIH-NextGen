@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "Having completed your specialized Master's degree, what is your ideal next step?",
+    "options": [
+      {
+        "text": "Enrolling in a PhD program to become a leading researcher and contribute to academia.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Joining an innovation-focused company as a Senior R&D Specialist.",
+        "code": [ "I", "A" ]
+      },
+      {
+        "text": "Taking on a leadership role, like a Project Manager or a Consultant in my field of expertise.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "Founding my own startup based on my master's thesis or project.",
+        "code": [ "E", "A" ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "What kind of work environment would you thrive in?",
+    "options": [
+      {
+        "text": "A university or research institution with a focus on publication and discovery.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "A fast-paced corporate R&D lab with a focus on patenting new inventions.",
+        "code": [ "I", "A" ]
+      },
+      {
+        "text": "A strategic consulting firm where I advise clients on complex problems.",
+        "code": [ "E", "S" ]
+      },
+      {
+        "text": "My own office, building a team and a product from the ground up.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "How do you define professional fulfillment?",
+    "options": [
+      {
+        "text": "Having my research published and cited by peers globally.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Seeing a product I helped invent being used by millions of people.",
+        "code": [ "I", "A", "R" ]
+      },
+      {
+        "text": "Leading an organization that becomes a market leader.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "Solving a major industry problem through my own company.",
+        "code": [ "E", "I" ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "When faced with a major unsolved problem in your field, what do you do?",
+    "options": [
+      {
+        "text": "Propose a multi-year research project to study it fundamentally.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Start building a prototype for a potential commercial solution.",
+        "code": [ "R", "A" ]
+      },
+      {
+        "text": "Assemble a team of experts to brainstorm and tackle the problem collaboratively.",
+        "code": [ "E", "S" ]
+      },
+      {
+        "text": "Analyze the business opportunity and market gap the problem presents.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What is your long-term career ambition?",
+    "options": [
+      {
+        "text": "To become a tenured professor or a distinguished research fellow.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "To become a Chief Technology Officer (CTO) or a lead innovator at a major tech company.",
+        "code": [ "I", "E" ]
+      },
+      {
+        "text": "To become a CEO or a partner at a leading firm.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "To be a successful founder whose company is acquired or goes public.",
+        "code": [ "E" ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "During a school fair, which stall would you be most excited to run?",
+    "options": [
+      {
+        "text": "A stall with a hands-on science experiment or a model volcano.",
+        "code": [ "R", "I" ]
+      },
+      {
+        "text": "A stall selling handmade crafts, paintings, or performing a short play.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "A stall organizing games, managing prize distribution, and interacting with people.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "A stall managing the cash counter, keeping track of sales, and organizing the inventory.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Which type of TV show or YouTube channel do you enjoy the most?",
+    "options": [
+      {
+        "text": "How It's Made, National Geographic, or science explainers.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Art tutorials, movie reviews, or music performance channels.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Vlogs about people's lives, social experiments, or talk shows.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "Videos about business case studies, the stock market, or organizational tips.",
+        "code": [ "E", "C" ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "If you had to complete a group project, what role would you naturally take?",
+    "options": [
+      {
+        "text": "Building the physical model or conducting the research.",
+        "code": [ "R", "I" ]
+      },
+      {
+        "text": "Designing the presentation slides and making the project look good.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Coordinating with team members and presenting the final project to the class.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Creating the project plan, setting deadlines, and ensuring all parts are correctly assembled.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "When you think about a future job, what sounds most appealing?",
+    "options": [
+      {
+        "text": "Working with my hands, with tools, or in a laboratory.",
+        "code": [ "R", "I" ]
+      },
+      {
+        "text": "Creating something new, like a story, a design, or a piece of music.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Helping people, teaching, or leading a team to success.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Working with data, ensuring accuracy, and improving processes.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What kind of problem do you find most satisfying to solve?",
+    "options": [
+      {
+        "text": "Figuring out why a machine isn't working or solving a complex math puzzle.",
+        "code": [ "R", "I" ]
+      },
+      {
+        "text": "Coming up with a creative new idea for a story or a design.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Resolving a misunderstanding between two friends.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "Organizing a messy room or creating a perfect schedule.",
+        "code": [ "C" ]
+      }
+    ]
+  }
+]

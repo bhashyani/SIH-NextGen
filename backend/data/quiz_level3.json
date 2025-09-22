@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "You've completed your diploma. What's the most exciting next step for you?",
+    "options": [
+      {
+        "text": "Immediately applying my technical skills in a hands-on job at a factory or a workshop.",
+        "code": [ "R" ]
+      },
+      {
+        "text": "Joining a company where I can use my skills to design and improve products.",
+        "code": [ "I", "A" ]
+      },
+      {
+        "text": "Working in a role where I train others or manage a team of technicians.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Taking a lateral entry into a B.Tech program to deepen my theoretical knowledge.",
+        "code": [ "I" ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Which work environment sounds best?",
+    "options": [
+      {
+        "text": "On-site at a construction project or in a manufacturing plant.",
+        "code": [ "R" ]
+      },
+      {
+        "text": "In a research & development (R&D) lab or a design studio.",
+        "code": [ "I", "A" ]
+      },
+      {
+        "text": "In a customer-facing role like technical support or sales engineering.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "In an office, planning project execution and ensuring quality control.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What kind of professional growth interests you most?",
+    "options": [
+      {
+        "text": "Becoming the most skilled, master technician in my field.",
+        "code": [ "R" ]
+      },
+      {
+        "text": "Innovating a new process or product that changes the industry.",
+        "code": [ "I", "A" ]
+      },
+      {
+        "text": "Moving into a management position and leading a large team.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "Specializing in quality assurance and process optimization.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "When a complex machine breaks, what is your first instinct?",
+    "options": [
+      {
+        "text": "Open the manual, get my tools, and start diagnosing the problem myself.",
+        "code": [ "R", "I" ]
+      },
+      {
+        "text": "Think about how the machine could be redesigned to be more reliable.",
+        "code": [ "A", "I" ]
+      },
+      {
+        "text": "Coordinate with the right people to get it fixed quickly.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Document the failure, analyze the cause, and create a report to prevent it from happening again.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "What does 'success' in your career look like to you?",
+    "options": [
+      {
+        "text": "Being known as the go-to person for fixing any practical problem.",
+        "code": [ "R" ]
+      },
+      {
+        "text": "Inventing something new or having a design portfolio I'm proud of.",
+        "code": [ "A", "I" ]
+      },
+      {
+        "text": "Leading a successful company or a high-performing team.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "Creating highly efficient, error-free systems and processes.",
+        "code": [ "C" ]
+      }
+    ]
+  }
+]

@@ -1,21 +1,30 @@
 import streamlit as st
-from backend.careerengine import load_quiz, recommend_career
+from backend.quiz_loader import load_quiz
 
-st.set_page_config(page_title="Career & Education Advisor", page_icon="🎓")
+st.title("One-Stop Career & Education Advisor")
 
-st.title("🎯 One-Stop Career & Education Advisor")
-st.write("Answer a few questions to discover your best career roadmap!")
+# Step 1: Let user choose education level
+education_level = st.selectbox(
+    "Select your current level:",
+    ["10th Class", "12th Class", "Diploma", "Bachelors", "Masters"]
+)
 
-quiz = load_quiz()
-answers = []
+# Step 2: Load quiz based on selection
+if education_level:
+    quiz = load_quiz(education_level)
+    st.write(f"### Quiz for {education_level}")
 
-for q in quiz:
-    choice = st.radio(q["question"], q["options"], key=q["id"])
-    answers.append(choice)
+    answers = {}
+    for q in quiz:
+        st.write(f"**Q{q['id']}: {q['question']}**")
+        choice = st.radio(
+            f"Choose an option for Q{q['id']}",
+            [opt["text"] for opt in q["options"]],
+            key=f"q{q['id']}"
+        )
+        answers[q['id']] = choice
 
-if st.button("Get My Career Path"):
-    result = recommend_career(answers)
-    st.subheader(f"✅ Recommended Career: {result['title']}")
-    st.write("### Roadmap")
-    for step in result["roadmap"]:
-        st.markdown(f"- {step}")
+    # Step 3: Submit button
+    if st.button("Submit Quiz"):
+        st.success("✅ Quiz submitted! (Next: AI career roadmap)")
+        st.json(answers)  # temporary check

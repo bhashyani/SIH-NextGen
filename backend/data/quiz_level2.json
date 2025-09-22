@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "Which of these tasks sounds like a great way to spend an afternoon?",
+    "options": [
+      {
+        "text": "Writing code to automate a task or analyzing a complex dataset.",
+        "code": [ "I", "C" ]
+      },
+      {
+        "text": "Sketching a new logo for a brand or writing a blog post.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Volunteering for a social cause or tutoring a junior student.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "Developing a business plan for a startup idea.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "In a professional environment, which activity would you prefer?",
+    "options": [
+      {
+        "text": "Conducting detailed research and presenting factual findings.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Brainstorming innovative ideas and designing new products.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Building relationships with clients and understanding their needs.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Managing project budgets and optimizing workflows for efficiency.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What is your primary motivation for pursuing a degree?",
+    "options": [
+      {
+        "text": "To gain deep technical knowledge and expertise in a specific field.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "To express my creativity and build a unique portfolio.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "To make a positive impact on society and help others.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "To acquire leadership skills and build a successful enterprise.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "Which part of a major project would you take ownership of?",
+    "options": [
+      {
+        "text": "The technical analysis and data validation.",
+        "code": [ "I", "C" ]
+      },
+      {
+        "text": "The visual design and user experience.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "The user interviews and team collaboration.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "The project pitching and financial forecasting.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "How do you prefer to learn?",
+    "options": [
+      {
+        "text": "Through structured problem-solving and logical deduction.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Through experimentation, creation, and self-expression.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Through group discussions, mentorship, and collaborative projects.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "Through case studies, strategic planning, and competitive analysis.",
+        "code": [ "E", "C" ]
+      }
+    ]
+  }
+]

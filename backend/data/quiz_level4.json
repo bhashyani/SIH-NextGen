@@ -1,0 +1,112 @@
+[
+  {
+    "id": 1,
+    "question": "As you approach the end of your degree, what are you most focused on?",
+    "options": [
+      {
+        "text": "Deepening my technical skills for a core research or development role.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Applying my knowledge in a creative field, like data visualization or product design.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Using my degree to get into a people-oriented role like consulting or human resources.",
+        "code": [ "S", "E" ]
+      },
+      {
+        "text": "Securing a stable job in a well-organized company with a clear career ladder.",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "question": "Which path seems more appealing right now?",
+    "options": [
+      {
+        "text": "Pursuing a Master's degree to specialize in a niche technical area.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Building a project portfolio to showcase my practical and creative skills to employers.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Gaining real-world experience through an MBA or a management trainee program.",
+        "code": [ "E" ]
+      },
+      {
+        "text": "Getting a certification in a specific technology or process (e.g., Six Sigma, AWS).",
+        "code": [ "C" ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "question": "What kind of impact do you want your work to have?",
+    "options": [
+      {
+        "text": "Pushing the boundaries of knowledge through research and discovery.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "Creating products or experiences that are beautiful and user-friendly.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "Solving societal problems and improving people's lives.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "Building and growing a successful business or organization.",
+        "code": [ "E" ]
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "question": "When considering a job offer, what do you prioritize?",
+    "options": [
+      {
+        "text": "The opportunity to work on challenging, cutting-edge technical problems.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "The creative freedom and autonomy in my role.",
+        "code": [ "A" ]
+      },
+      {
+        "text": "The company culture and the opportunity to collaborate with a great team.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "The salary, job security, and structure of the organization.",
+        "code": [ "C", "E" ]
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "question": "Your final year project is about to start. What kind of topic do you choose?",
+    "options": [
+      {
+        "text": "A highly theoretical or research-based topic that explores a new concept.",
+        "code": [ "I" ]
+      },
+      {
+        "text": "A project where I can design and build a fully functional, user-facing application.",
+        "code": [ "A", "R" ]
+      },
+      {
+        "text": "A project in collaboration with an NGO to solve a real-world community problem.",
+        "code": [ "S" ]
+      },
+      {
+        "text": "A project that analyzes and improves an existing business process for a company.",
+        "code": [ "C", "E" ]
+      }
+    ]
+  }
+]
