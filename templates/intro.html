@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NextGen - Discover Your Career</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body, html {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0f0f1a;
+            color: #fff;
+            overflow: hidden;
+        }
+        a {
+            text-decoration: none;
+        }
+
+        /* Background animation */
+        .background {
+            position: fixed;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 10%, transparent 10.01%);
+            background-size: 60px 60px;
+            animation: rotate 30s linear infinite;
+            z-index: 0;
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+
+        /* Centered content */
+        .content {
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 3.5em;
+            color: #6A00FF;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px #6A00FF;
+        }
+        p {
+            font-size: 1.2em;
+            max-width: 700px;
+            margin-bottom: 40px;
+            color: #ccc;
+        }
+
+        /* Buttons */
+        .btn {
+            background: linear-gradient(45deg, #6A00FF, #FF6EC7);
+            color: #fff;
+            padding: 15px 50px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            margin: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 110, 199, 0.4);
+        }
+        .btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 30px rgba(255, 110, 199, 0.6);
+        }
+        .btn:active {
+            transform: scale(0.95);
+        }
+
+        /* Footer or Learn More */
+        .footer-link {
+            margin-top: 50px;
+            color: #6A00FF;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        .footer-link:hover {
+            color: #FF6EC7;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .btn {
+                font-size: 1em;
+                padding: 12px 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+
+    <div class="content">
+        <h1>NextGen</h1>
+        <p>Discover your strengths, explore career paths, and get a personalized roadmap to achieve your dreams. Interactive quizzes and guidance await!</p>
+
+        <!-- Start Quiz button -->
+        <form action="{{ url_for('index') }}" method="post">
+            <button type="submit" class="btn" name="education_level" value="">Start Quiz</button>
+        </form>
+
+        <a href="#learn-more" class="footer-link">Learn More</a>
+    </div>
+
+</body>
+</html>

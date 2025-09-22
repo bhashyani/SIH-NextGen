@@ -2,34 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Career Advisor Quiz</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Quiz - {{ education_level }}</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: auto; }
+        .question { margin-bottom: 20px; }
+        .options label { display: block; margin: 5px 0; }
+        .error { color: red; font-weight: bold; margin-bottom: 20px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎓 Personalized Career Advisor</h1>
-        <form id="quizForm" method="POST">
-            <input type="hidden" name="education_level" value="10th Class">
+    <h1>Quiz - {{ education_level }}</h1>
 
-            {% for q in quiz %}
-            <div class="quiz-card" data-step="{{ loop.index0 }}" {% if loop.index0 !=0 %}style="display:none" {% endif %}>
-                <p><b>Q{{ q.id }}: {{ q.question }}</b></p>
-                {% for opt in q.options %}
-                <div class="option">
-                    <input type="radio" id="q{{ q.id }}_{{ loop.index }}" name="q{{ q.id }}" value="{{ opt.text }}" required>
-                    <label for="q{{ q.id }}_{{ loop.index }}">{{ opt.text }}</label>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST">
+        <!-- Hidden field to preserve education_level -->
+        <input type="hidden" name="education_level" value="{{ education_level }}">
+
+        {% for q in quiz %}
+            <div class="question">
+                <p><strong>{{ loop.index }}. {{ q.question }}</strong></p>
+                <div class="options">
+                    {% for opt in q.options %}
+                        <label>
+                            <input type="radio" name="q{{ q.id }}" value="{{ opt.text }}">
+                            {{ opt.text }}
+                        </label>
+                    {% endfor %}
                 </div>
-                {% endfor %}
             </div>
-            {% endfor %}
+        {% endfor %}
 
-            <div class="quiz-navigation">
-                <button type="button" id="prevBtn" onclick="nextPrev(-1)">⬅️ Previous</button>
-                <button type="button" id="nextBtn" onclick="nextPrev(1)">Next ➡️</button>
-                <button type="submit" id="submitBtn" style="display:none">Submit ✅</button>
-            </div>
-        </form>
-    </div>
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+        <button type="submit">Submit Quiz</button>
+    </form>
 </body>
 </html>

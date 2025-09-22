@@ -5,42 +5,124 @@
     <title>{{ career.title }} Roadmap</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f7fa;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #6A00FF;
+            margin-bottom: 40px;
+        }
+        .timeline-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .stage-card {
+            background: #fff;
+            padding: 20px;
+            border-left: 6px solid #6A00FF;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .stage-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        .stage-title {
+            font-size: 1.4em;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .stage-title span.icon {
+            font-size: 1.6em;
+        }
+        .stage-description {
+            margin-bottom: 10px;
+        }
+        .stage-skills, .stage-resources {
+            font-size: 0.9em;
+            color: #555;
+        }
+        .stage-resources a {
+            color: #6A00FF;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+        .stage-resources a:hover {
+            text-decoration: underline;
+        }
+        #timeline {
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>🎯 {{ career.title }} Career Roadmap</h1>
 
+        <div class="timeline-container">
+            {% for stage in career.roadmap %}
+            <div class="stage-card">
+                <div class="stage-title">
+                    <span class="icon">{{ stage.icon }}</span>
+                    <strong>{{ stage.stage }}</strong>
+                </div>
+                <div class="stage-description">{{ stage.description }}</div>
+                <div class="stage-skills"><b>Skills:</b> {{ stage.skills | join(", ") }}</div>
+                <div class="stage-resources"><b>Resources:</b> 
+                    {% for link in stage.resources %}
+                        <a href="{{ link }}" target="_blank">Link</a>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- Optional Plotly Timeline -->
         <div id="timeline"></div>
     </div>
 
     <script>
-    const roadmap = {{ career.roadmap | tojson }};
-    const stages = roadmap.map(r => r.stage);
-    const descriptions = roadmap.map(r => r.description);
-    const icons = roadmap.map(r => r.icon);
-    const skills = roadmap.map(r => r.skills.join(", "));
-    const resources = roadmap.map(r => r.resources.map(link => `<a href='${link}' target='_blank'>Link</a>`).join(" | "));
+        const roadmap = {{ career.roadmap | tojson }};
+        const stages = roadmap.map(r => r.stage);
+        const descriptions = roadmap.map(r => r.description);
+        const icons = roadmap.map(r => r.icon);
+        const skills = roadmap.map(r => r.skills.join(", "));
+        const resources = roadmap.map(r => r.resources.map(link => `<a href='${link}' target='_blank'>Link</a>`).join(" | "));
 
-    // Build Plotly timeline as horizontal bar chart
-    const data = [{
-        x: Array(stages.length).fill(1),
-        y: stages,
-        text: descriptions.map((d,i) => `${icons[i]} <b>${stages[i]}</b><br>${d}<br>Skills: ${skills[i]}<br>${resources[i]}`),
-        type: 'bar',
-        orientation: 'h',
-        marker: {color: '#6A00FF'},
-        hoverinfo: 'text'
-    }];
+        const data = [{
+            x: Array(stages.length).fill(1),
+            y: stages,
+            text: descriptions.map((d,i) => `${icons[i]} <b>${stages[i]}</b><br>${d}<br>Skills: ${skills[i]}<br>${resources[i]}`),
+            type: 'bar',
+            orientation: 'h',
+            marker: {color: '#6A00FF'},
+            hoverinfo: 'text'
+        }];
 
-    const layout = {
-        title: '',
-        height: 400,
-        yaxis: {autorange: "reversed"},
-        xaxis: {visible: false},
-        margin: {l: 150, r: 50, t: 50, b: 50}
-    };
+        const layout = {
+            title: '',
+            height: 50 + stages.length * 60,
+            yaxis: {autorange: "reversed"},
+            xaxis: {visible: false},
+            margin: {l: 150, r: 50, t: 20, b: 20}
+        };
 
-    Plotly.newPlot('timeline', data, layout, {responsive: true});
+        Plotly.newPlot('timeline', data, layout, {responsive: true});
     </script>
 </body>
 </html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Select Class</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; }
+        button { margin: 10px; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Select Your Class / Education Level</h1>
+    <form method="POST">
+        {% for level in levels %}
+            <button type="submit" name="education_level" value="{{ level }}">{{ level }}</button>
+        {% endfor %}
+    </form>
+</body>
+</html>
