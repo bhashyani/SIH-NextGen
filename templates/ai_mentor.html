@@ -11,45 +11,189 @@
             text-align: center;
             padding: 50px;
             min-height: 100vh;
+            position: relative;
         }
+
+        /* Back button */
+        #back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: #6a00ff;
+            color: #fff;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        #back-btn:hover {
+            background: #00d4ff;
+            color: #000;
+        }
+
         input[type="text"] {
             width: 60%;
             padding: 12px;
             font-size: 16px;
-            border-radius: 8px;
+            border-radius: 8px 0 0 8px;
             border: none;
+            outline: none;
         }
+
         button {
             padding: 12px 25px;
             font-size: 16px;
-            border-radius: 8px;
+            border-radius: 0 8px 8px 0;
             background: #6a00ff;
             color: #fff;
             border: none;
             cursor: pointer;
-            margin-left: 10px;
             transition: all 0.3s ease;
         }
+
         button:hover {
             background: #00d4ff;
         }
-        .response {
+
+        #chat-box {
             margin-top: 30px;
-            font-size: 18px;
+            width: 70%;
+            max-width: 700px;
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            height: 400px;
+            overflow-y: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: left;
+        }
+
+        .message { 
+            margin-bottom: 15px; 
+        }
+
+        .user { 
+            color: #22d3ee; 
+            font-weight: bold; 
+        }
+
+        .ai { 
+            color: #fbbf24; 
+            font-weight: bold; 
+        }
+
+        /* Loading animation */
+        #loading {
+            display: none;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 0 5px;
+            background: #00ffff;
+            border-radius: 50%;
+            animation: bounce 1s infinite;
+        }
+
+        .dot:nth-child(2) { animation-delay: 0.2s; }
+        .dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1); }
+        }
+
+        /* AI response formatting */
+        .ai-heading {
+            color: #ff4d4d; /* Red side heading */
+            font-weight: bold;
+            font-size: 1.1em;
+            display: block;
+            margin-top: 10px;
+        }
+
+        .ai-point {
+            color: #ffffff; /* White info text */
+            margin-left: 20px;
+            display: block;
+            margin-bottom: 5px;
         }
     </style>
 </head>
 <body>
+    <!-- Back button -->
+    <button id="back-btn" onclick="window.location.href='/'">← Back</button>
+
     <h1>AI Mentor</h1>
     <p>Ask your career-related questions and get instant guidance.</p>
 
-    <form method="POST">
-        <input type="text" name="question" placeholder="Type your question..." required>
+    <div id="chat-box"></div>
+    <div id="loading">
+        <span class="dot"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+    </div>
+
+    <form id="chat-form">
+        <input type="text" id="question" placeholder="Type your question..." required>
         <button type="submit">Ask</button>
     </form>
 
-    {% if response %}
-        <div class="response">{{ response }}</div>
-    {% endif %}
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const chatForm = document.getElementById('chat-form');
+        const questionInput = document.getElementById('question');
+        const loadingDiv = document.getElementById('loading');
+
+        function appendMessage(sender, text) {
+            const div = document.createElement('div');
+            div.classList.add('message');
+
+            if(sender === 'ai') {
+                let formatted = text
+                    .replace(/^### (.*)$/gm, '<span class="ai-heading">$1</span>')
+                    .replace(/\*\*(.*?)\*\*/g, '<span class="ai-heading">$1</span>')
+                    .replace(/^\* (.*)$/gm, '<span class="ai-point">• $1</span>')
+                    .replace(/^\d+\.\s+(.*)$/gm, '<span class="ai-point">• $1</span>');
+                text = formatted;
+            }
+
+            div.innerHTML = `<span class="${sender}">${sender}:</span> ${text}`;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        chatForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const question = questionInput.value;
+            if (!question.trim()) return;
+
+            appendMessage('user', question);
+            questionInput.value = '';
+            loadingDiv.style.display = 'block';
+
+            try {
+                const response = await fetch('/ai-mentor', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ message: question })
+                });
+                const data = await response.json();
+                loadingDiv.style.display = 'none';
+                appendMessage('ai', data.reply);
+            } catch (err) {
+                loadingDiv.style.display = 'none';
+                appendMessage('ai', 'Error: Could not reach the AI Mentor. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>

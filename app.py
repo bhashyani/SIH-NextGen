@@ -1,9 +1,18 @@
 import json
-from flask import Flask, render_template, request, redirect, url_for
+import os
+from flask import Flask, render_template, request, redirect, url_for, jsonify
 from backend.quiz_loader import load_quiz, QUIZ_MAP
 from collections import Counter
+from google import genai
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 app = Flask(__name__)
+
+# Initialize Gemini client with your API key
+gemini_client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load career JSON
 with open("backend/data/careers.json", encoding="utf-8") as f:
@@ -32,7 +41,6 @@ def rule_based_career(scores):
 
     return career_data[career_key]  # Return full JSON object
 
-
 # ----------------------------
 # Routes
 # ----------------------------
@@ -41,7 +49,6 @@ def rule_based_career(scores):
 @app.route("/", methods=["GET"])
 def home():
     return render_template("intro.html")
-
 
 # Class selection and quiz route
 @app.route("/quiz", methods=["GET", "POST"])
@@ -101,18 +108,43 @@ def index():
     # GET request → show class selection
     return render_template("select_level.html", levels=levels)
 
-
-# AI Mentor page with simple interactive form
+# AI Mentor page with Gemini API integration
 @app.route("/ai-mentor", methods=["GET", "POST"])
 def ai_mentor():
     response = None
+
     if request.method == "POST":
+        # Check if it's a JSON request (AJAX)
+        if request.is_json:
+            user_message = request.json.get("message")
+            if not user_message:
+                return jsonify({"reply": "Sorry, I didn't get that. Please ask again."})
+
+            # Call Gemini API
+            try:
+                gemini_resp = gemini_client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=user_message
+                )
+                ai_reply = gemini_resp.text if hasattr(gemini_resp, "text") else str(gemini_resp)
+            except Exception as e:
+                ai_reply = f"Error: {str(e)}"
+
+            return jsonify({"reply": ai_reply})
+
+        # Handle normal form POST (HTML form)
         question = request.form.get("question")
         if question:
-            # Placeholder AI response
-            response = f"🤖 AI Mentor says: I received your question: '{question}'"
-    return render_template("ai_mentor.html", response=response)
+            try:
+                gemini_resp = gemini_client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents=question
+                )
+                response = gemini_resp.text if hasattr(gemini_resp, "text") else str(gemini_resp)
+            except Exception as e:
+                response = f"🤖 AI Mentor says: Error: {str(e)}"
 
+    return render_template("ai_mentor.html", response=response)
 
 # ----------------------------
 # Sign In / Sign Up Routes
@@ -127,7 +159,6 @@ def signin():
         return redirect(url_for("home"))  # Redirect to intro after login
     return render_template("signin.html")
 
-
 @app.route("/signup", methods=["GET", "POST"])
 def signup():
     if request.method == "POST":
@@ -137,7 +168,6 @@ def signup():
         # TODO: Save user details (DB or mock)
         return redirect(url_for("signin"))
     return render_template("signup.html")
-
 
 # ----------------------------
 # Main Entry
